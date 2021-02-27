@@ -1,6 +1,9 @@
 // Create score variable
 var score = 0;
 
+// identify centerDiv
+//var centerDiv = document.querySelector('#centerDiv');
+
 // Target the start button
 var startButton = document.querySelector('#startButton');
 
@@ -23,8 +26,19 @@ var quiz = [
         correct: "c"}
 ]
 function verifyClick() {
+    var centerDiv = document.querySelector('#centerDiv');
     console.log("answer was clicked");
     console.log(this.id);
+    // compare button id with correct answer
+    if (this.id==="answer3") {
+        var correct = document.createTextNode("Correct!");
+        centerDiv.appendChild(correct); 
+    }
+    else {
+        var incorrect = document.createTextNode("Incorrect!");
+        centerDiv.appendChild(incorrect);
+    }
+    question2();
 }
 
 function startQuiz() {
@@ -34,8 +48,8 @@ function startQuiz() {
     // replace Start Quiz with a question and iterate through the questions
     document.querySelector('#question').textContent = quiz[0].q;
 
-        var btn = document.createElement("BUTTON");
         var centerDiv = document.querySelector('#centerDiv');
+        var btn = document.createElement("BUTTON");
         btn.id = "answer1"
         centerDiv.appendChild(btn);
         var linebreak = document.createElement("br");
