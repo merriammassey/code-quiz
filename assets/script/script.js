@@ -25,6 +25,7 @@ var quiz = [
         choices: ["a","b","c","d"],
         correct: "c"}
 ]
+
 function verifyClick() {
     var centerDiv = document.querySelector('#centerDiv');
     console.log("answer was clicked");
@@ -38,15 +39,12 @@ function verifyClick() {
         var incorrect = document.createTextNode("Incorrect!");
         centerDiv.appendChild(incorrect);
     }
-    question2();
 }
 
-function startQuiz() {
-    // remove the start button
-    document.querySelector('#startButton').remove();
-
+// define a function to display questions and answers but I don't understand the currentQuestion argument
+var nextQuestion = function(currentQuestion) {
     // replace Start Quiz with a question and iterate through the questions
-    document.querySelector('#question').textContent = quiz[0].q;
+    document.querySelector('#question').textContent = currentQuestion.q;
 
         var centerDiv = document.querySelector('#centerDiv');
         var btn = document.createElement("BUTTON");
@@ -56,7 +54,7 @@ function startQuiz() {
         centerDiv.appendChild(linebreak);
         btn.classList.add("btn-primary");
         btn.classList.add("btn");
-        var btnText = document.createTextNode(quiz[0].choices[0]);
+        var btnText = document.createTextNode(currentQuestion.choices[0]);
         btn.appendChild(btnText); 
         btn.addEventListener('click', verifyClick);
 
@@ -67,7 +65,7 @@ function startQuiz() {
         centerDiv.appendChild(linebreak);
         btn.classList.add("btn-primary");
         btn.classList.add("btn");
-        btnText = document.createTextNode(quiz[0].choices[1]);
+        btnText = document.createTextNode(currentQuestion.choices[1]);
         btn.appendChild(btnText); 
         btn.addEventListener('click', verifyClick);
 
@@ -78,7 +76,7 @@ function startQuiz() {
         centerDiv.appendChild(linebreak);
         btn.classList.add("btn-primary");
         btn.classList.add("btn");
-        btnText = document.createTextNode(quiz[0].choices[2]);
+        btnText = document.createTextNode(currentQuestion.choices[2]);
         btn.appendChild(btnText); 
         btn.addEventListener('click', verifyClick);
 
@@ -89,11 +87,23 @@ function startQuiz() {
         centerDiv.appendChild(linebreak);
         btn.classList.add("btn-primary");
         btn.classList.add("btn");
-        btnText = document.createTextNode(quiz[0].choices[3]);
+        btnText = document.createTextNode(currentQuestion.choices[3]);
         btn.appendChild(btnText); 
         btn.addEventListener('click', verifyClick);
 
 
+
+}
+
+
+
+function startQuiz() {
+    // remove the start button
+    document.querySelector('#startButton').remove();
+    //display the first question
+    nextQuestion(quiz[0]);
+
+    
 
     // add 4 buttons
         /*    for (c=0; c<4; c++) {
