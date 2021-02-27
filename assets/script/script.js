@@ -43,28 +43,41 @@ var quiz = [
         correct: "c"}
 ]
 
+//define the function to check if an answer is correct
+function check() {
 
+
+}
 function startQuiz() {
 
     // remove the start button
     document.querySelector('#startButton').remove();
-    // add 4 buttons
-    // create a button var, style it
-    var btn = document.createElement("BUTTON");
-    btn.classList.add("btn-primary");
-    btn.classList.add("btn");
-    // add button to centerDiv
-    var centerDiv = document.querySelector('#centerDiv');
-    centerDiv.appendChild(btn);
 
     // loop to iterate through questions
     for (i=0; i<quiz.length; i++) {
     
     // replace Start Quiz with a question and iterate through the questions
     document.querySelector('#question').textContent = quiz[0].q;
-    
-     // add text variable to button   
+
+    // add 4 buttons
+    for (i=0; i<4; i++) {
+    // create a button var, style it
+    var btn = document.createElement("BUTTON");
+    btn.classList.add("btn-primary");
+    btn.classList.add("btn");
+    btn.id = "answer" + i
+    // add button to centerDiv
+    var centerDiv = document.querySelector('#centerDiv');
+    centerDiv.appendChild(btn);
+    var linebreak = document.createElement("br");
+    centerDiv.appendChild(linebreak);
+    // add text variable to button   
     var btnText = document.createTextNode(quiz[i].a);
+    btn.appendChild(btnText);
+    // add Event LIstener and ...
+    btn.addEventListener('click', check);
+}
+     
     
 
     }
