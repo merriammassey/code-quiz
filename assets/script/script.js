@@ -4,92 +4,141 @@ var score = 0;
 // Target the start button
 var startButton = document.querySelector('#startButton');
 
-var questions = [
-
-];
-
-var answers = [
-
-];
-
 var quiz = [
     {
         q: "this is question 1",
-        a: "a",
-        b: "b",
-        c: "c",
-        d: "d",
+        choices: ["a","b","c","d"],
         correct: "c"},
     {
         q: "this is question 2",
-        a: "a",
-        b: "b",
-        c: "c",
-        d: "d",
-        correct: "c"},
+        choices: ["e","f","g","h"],
+        correct: "h"},
     { 
         q: "this is question 3",
-        a: "a",
-        b: "b",
-        c: "c",
-        d: "d",
+        choices: ["a","b","c","d"],
         correct: "c"},
     {
         q: "this is question 4",
-        a: "a",
-        b: "b",
-        c: "c",
-        d: "d",
+        choices: ["a","b","c","d"],
         correct: "c"}
 ]
-
-//define the function to check if an answer is correct
-function check() {
-
-
+function verifyClick() {
+    console.log("answer was clicked");
+    console.log(this.id);
 }
-function startQuiz() {
 
+function startQuiz() {
     // remove the start button
     document.querySelector('#startButton').remove();
 
-    // loop to iterate through questions
-    for (i=0; i<quiz.length; i++) {
-    
     // replace Start Quiz with a question and iterate through the questions
     document.querySelector('#question').textContent = quiz[0].q;
 
+        var btn = document.createElement("BUTTON");
+        var centerDiv = document.querySelector('#centerDiv');
+        btn.id = "answer1"
+        centerDiv.appendChild(btn);
+        var linebreak = document.createElement("br");
+        centerDiv.appendChild(linebreak);
+        btn.classList.add("btn-primary");
+        btn.classList.add("btn");
+        var btnText = document.createTextNode(quiz[0].choices[0]);
+        btn.appendChild(btnText); 
+        btn.addEventListener('click', verifyClick);
+
+        btn = document.createElement("BUTTON");
+        btn.id = "answer2"
+        centerDiv.appendChild(btn);
+        linebreak = document.createElement("br");
+        centerDiv.appendChild(linebreak);
+        btn.classList.add("btn-primary");
+        btn.classList.add("btn");
+        btnText = document.createTextNode(quiz[0].choices[1]);
+        btn.appendChild(btnText); 
+        btn.addEventListener('click', verifyClick);
+
+        btn = document.createElement("BUTTON");
+        btn.id = "answer3"
+        centerDiv.appendChild(btn);
+        linebreak = document.createElement("br");
+        centerDiv.appendChild(linebreak);
+        btn.classList.add("btn-primary");
+        btn.classList.add("btn");
+        btnText = document.createTextNode(quiz[0].choices[2]);
+        btn.appendChild(btnText); 
+        btn.addEventListener('click', verifyClick);
+
+        btn = document.createElement("BUTTON");
+        btn.id = "answer4"
+        centerDiv.appendChild(btn);
+        linebreak = document.createElement("br");
+        centerDiv.appendChild(linebreak);
+        btn.classList.add("btn-primary");
+        btn.classList.add("btn");
+        btnText = document.createTextNode(quiz[0].choices[3]);
+        btn.appendChild(btnText); 
+        btn.addEventListener('click', verifyClick);
+
+
+
     // add 4 buttons
-    for (i=0; i<4; i++) {
-    // create a button var, style it
-    var btn = document.createElement("BUTTON");
-    btn.classList.add("btn-primary");
-    btn.classList.add("btn");
-    btn.id = "answer" + i
-    // add button to centerDiv
-    var centerDiv = document.querySelector('#centerDiv');
-    centerDiv.appendChild(btn);
-    var linebreak = document.createElement("br");
-    centerDiv.appendChild(linebreak);
-    // add text variable to button   
-    var btnText = document.createTextNode(quiz[i].a);
-    btn.appendChild(btnText);
-    // add Event LIstener and ...
-    btn.addEventListener('click', check);
+        /*    for (c=0; c<4; c++) {
+        // create a button var, style it
+        var btn = document.createElement("BUTTON");
+        btn.classList.add("btn-primary");
+        btn.classList.add("btn");
+        // add a unique id to each button
+        btn.id = "answer" + i;
+        // add button to centerDiv
+        var centerDiv = document.querySelector('#centerDiv');
+        centerDiv.appendChild(btn);
+        var linebreak = document.createElement("br");
+        centerDiv.appendChild(linebreak);
+        // add text variable to button and iterate through the choices
+        
+    };*/
 }
-     
-    
+
+
+    // pause and listen for choice
+
+    // check choice
+
+    function check() {
 
     }
 
+    // display correct incorrect
+
+    // add to score
+
+    // move to next question
+
+
+/*
+ 
+    // loop to iterate through questions and answers in quiz array
+    for (i=0; i<quiz.length; i++) {
     
+    
+    }
+
     
     btn.appendChild(btnText);
+    // add Event LIstener 
+    btn.addEventListener('click', check() {
+        
+    });
+
+*/
+    
+    
+    
 
 //document.querySelector('#centerDiv').add(btn);
 
 // when do you use get element by id?
-}
+
 
 startButton.addEventListener('click', startQuiz);
 
