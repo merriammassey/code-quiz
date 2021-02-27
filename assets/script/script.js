@@ -14,28 +14,28 @@ var answers = [
 
 var quiz = [
     {
-        question1: "this is question 1",
+        q: "this is question 1",
         a: "a",
         b: "b",
         c: "c",
         d: "d",
         correct: "c"},
     {
-        question2: "this is question 2",
+        q: "this is question 2",
         a: "a",
         b: "b",
         c: "c",
         d: "d",
         correct: "c"},
     { 
-        question3: "this is question 3",
+        q: "this is question 3",
         a: "a",
         b: "b",
         c: "c",
         d: "d",
         correct: "c"},
     {
-        question4: "this is question 4",
+        q: "this is question 4",
         a: "a",
         b: "b",
         c: "c",
@@ -45,20 +45,33 @@ var quiz = [
 
 
 function startQuiz() {
-    // replace Start Quiz with the first question
-document.querySelector('#question').textContent = "question 1";
-// remove the start button
-document.querySelector('#startButton').remove();
-// create a button var, style it
-var btn = document.createElement("BUTTON");
-var btnText = document.createTextNode("choice1");
-btn.classList.add("btn-primary");
-btn.classList.add("btn");
-// add button to centerDiv
-var centerDiv = document.querySelector('#centerDiv');
-centerDiv.appendChild(btn);
-// add text variable to button
-btn.appendChild(btnText);
+
+    // remove the start button
+    document.querySelector('#startButton').remove();
+    // add 4 buttons
+    // create a button var, style it
+    var btn = document.createElement("BUTTON");
+    btn.classList.add("btn-primary");
+    btn.classList.add("btn");
+    // add button to centerDiv
+    var centerDiv = document.querySelector('#centerDiv');
+    centerDiv.appendChild(btn);
+
+    // loop to iterate through questions
+    for (i=0; i<quiz.length; i++) {
+    
+    // replace Start Quiz with a question and iterate through the questions
+    document.querySelector('#question').textContent = quiz[0].q;
+    
+     // add text variable to button   
+    var btnText = document.createTextNode(quiz[i].a);
+    
+
+    }
+
+    
+    
+    btn.appendChild(btnText);
 
 //document.querySelector('#centerDiv').add(btn);
 
