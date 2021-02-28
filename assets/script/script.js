@@ -1,5 +1,11 @@
 // Create score variable
 var score = 0;
+//display it in window
+document.querySelector('#score').textContent =  "Score: " + score;
+
+
+// save it in localStorage
+//localStorage.setItem(score, 0);
 
 // identify centerDiv
 var centerDiv = document.querySelector('#centerDiv');
@@ -43,6 +49,7 @@ if (this.innerHTML===quiz[0].correct) {
     centerDiv.appendChild(alert);
     alert.innerText=("Correct!");
     score+=1;
+    document.querySelector('#score').textContent = "Score: " + score;
     console.log(score);
 } else {
     var alert = document.createElement('p');
