@@ -4,6 +4,8 @@ var score = 0;
 // identify centerDiv
 var centerDiv = document.querySelector('#centerDiv');
 
+var questionNumber = 0;
+
 var quiz = [
     {
         q: "this is question 1",
@@ -22,6 +24,13 @@ var quiz = [
         choices: ["a","b","c","d"],
         correct: "c"}
 ]
+var timer = document.getElementById('time');
+var timeLeft=59;
+
+/*function countdown() {
+    var timeLeft = 59;*/
+
+
 
 
 // Target the start button
@@ -41,23 +50,61 @@ if (this.innerHTML===quiz[0].correct) {
     alert.innerText=("Incorrect!");
 }
 //two seconds later, go to the next question
+nextQuestion();
+}
+/*document.querySelector('#question').innerHTML = "";
+document.querySelector('#btns').innerHTML ="";
 }
 
-function startQuiz() {
-  // remove the start button
-    document.querySelector('#startButton').remove();
+function clearBox(elementID)
+{
+    document.getElementById(elementID).innerHTML = "";
+} */
 
-    document.querySelector('#question').textContent = quiz[0].q;
+function nextQuestion() {
+    document.querySelector('#question').textContent = quiz[questionNumber].q;
+
     //display 4 choices
     for (i=0; i<4; i++) {
     var centerDiv = document.querySelector('#centerDiv');
     var btn = document.createElement("BUTTON");
     btn.classList.add("btn-primary");
     btn.classList.add("btn");
+    //btn.setAttribute(id, btns);
     var linebreak = document.createElement("br");
     centerDiv.appendChild(btn);
     centerDiv.appendChild(linebreak);
-    btn.innerHTML=(quiz[0].choices[i]);
+    btn.innerHTML=(quiz[questionNumber].choices[i]);
+    // event Listener
     btn.addEventListener('click', check);
+    };
+    questionNumber++;
+}
+
+function startQuiz() {
+  // remove the start button
+    timeLeft--;
+
+    // Add timer
+var timeInterval = setInterval(function() {
+    // As long as there is more than one second left
+    if (timeLeft > 1) {
+        // Show second remaining
+        timer.textContent = timeLeft + ' seconds remaining';
+        // Decrement time left
+        timeLeft--;
+    } else if (timeLeft === 1) {
+        // change "seconds" to "second" when there is one second left
+        timer.textContent = timeLeft + ' second remaining';
+        timeLeft--;
+    } else {
+        // Time's up when time left is 0
+        timer.textContent = "Time's up";
+        // Stop the timer
+        clearInterval(timeInterval);
     }
+    }, 1000);
+
+    document.querySelector('#startButton').remove();
+    nextQuestion();
 }
