@@ -50,7 +50,11 @@ if (this.innerHTML===quiz[0].correct) {
     alert.innerText=("Incorrect!");
 }
 //two seconds later, go to the next question
-nextQuestion();
+setTimeout(function () {
+    startButton.innerHTML="";
+    nextQuestion();
+  }, 1000)
+
 }
 /*document.querySelector('#question').innerHTML = "";
 document.querySelector('#btns').innerHTML ="";
