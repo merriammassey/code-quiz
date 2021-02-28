@@ -26,7 +26,7 @@ var quiz = [
 ]
 var timer = document.getElementById('time');
 var timeLeft=59;
-
+var buttonDiv = document.querySelector('#buttons');
 /*function countdown() {
     var timeLeft = 59;*/
 
@@ -48,36 +48,28 @@ if (this.innerHTML===quiz[0].correct) {
     var alert = document.createElement('p');
     centerDiv.appendChild(alert);
     alert.innerText=("Incorrect!");
-}
+};
 //two seconds later, go to the next question
 setTimeout(function () {
-    startButton.innerHTML="";
+    //this is not removing all the buttons,just the one that was clicked
+    buttonDiv.innerHTML="";
+    alert.innerText="";
     nextQuestion();
   }, 1000)
-
 }
-/*document.querySelector('#question').innerHTML = "";
-document.querySelector('#btns').innerHTML ="";
-}
-
-function clearBox(elementID)
-{
-    document.getElementById(elementID).innerHTML = "";
-} */
 
 function nextQuestion() {
     document.querySelector('#question').textContent = quiz[questionNumber].q;
 
     //display 4 choices
     for (i=0; i<4; i++) {
-    var centerDiv = document.querySelector('#centerDiv');
     var btn = document.createElement("BUTTON");
     btn.classList.add("btn-primary");
     btn.classList.add("btn");
     //btn.setAttribute(id, btns);
     var linebreak = document.createElement("br");
-    centerDiv.appendChild(btn);
-    centerDiv.appendChild(linebreak);
+    buttonDiv.appendChild(btn);
+    buttonDiv.appendChild(linebreak);
     btn.innerHTML=(quiz[questionNumber].choices[i]);
     // event Listener
     btn.addEventListener('click', check);
