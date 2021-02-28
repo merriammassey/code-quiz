@@ -55,6 +55,7 @@ if (this.innerHTML===quiz[0].correct) {
     var alert = document.createElement('p');
     centerDiv.appendChild(alert);
     alert.innerText=("Incorrect!");
+    timeLeft-=5;
 };
 //two seconds later, go to the next question
 setTimeout(function () {
