@@ -87,14 +87,20 @@ function nextQuestion() {
     // advance to the next question unless it's the last question
     else {
         document.querySelector('#question').textContent ="Your score is " + score;
-        timer.innerHTML="";
+        timer.innerText="";
         buttonDiv.innerHTML="";
+        //create input field
+        var initials = document.createElement("input");
+        initials.type = "text";
+        buttonDiv.appendChild(initials);
         // add save button
         var btn = document.createElement("BUTTON");
         btn.classList.add("btn-primary");
         btn.classList.add("btn");
         buttonDiv.appendChild(btn);
+        timeLeft = 0;
         btn.innerHTML="Save my score";
+        btn.addEventListener('click', saveScore);
     }
 }
 //}
