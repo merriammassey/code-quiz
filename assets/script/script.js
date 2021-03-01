@@ -28,7 +28,7 @@ var quiz = [
     {
         q: "this is question 4",
         choices: ["a","b","c","d"],
-        correct: "c"}
+        correct: "c"},
 ]
 var timer = document.getElementById('time');
 var timeLeft=59;
@@ -50,7 +50,7 @@ if (this.innerHTML===quiz[0].correct) {
     alert.innerText=("Correct!");
     score+=1;
     document.querySelector('#score').textContent = "Score: " + score;
-    console.log(score);
+//   console.log(score);
 } else {
     var alert = document.createElement('p');
     centerDiv.appendChild(alert);
@@ -67,8 +67,8 @@ setTimeout(function () {
 }
 
 function nextQuestion() {
+    if (questionNumber < 4) {
     document.querySelector('#question').textContent = quiz[questionNumber].q;
-
     //display 4 choices
     for (i=0; i<4; i++) {
     var btn = document.createElement("BUTTON");
@@ -84,11 +84,31 @@ function nextQuestion() {
     };
     questionNumber++;
 }
+    // advance to the next question unless it's the last question
+    else {
+        document.querySelector('#question').textContent ="Your score is " + score;
+        timer.innerHTML="";
+        buttonDiv.innerHTML="";
+        // add save button
+        var btn = document.createElement("BUTTON");
+        btn.classList.add("btn-primary");
+        btn.classList.add("btn");
+        buttonDiv.appendChild(btn);
+        btn.innerHTML="Save my score";
+    }
+}
+//}
+/*
+when question number is 5
+stop the timer
+clear buttons
+display your score and save button
+//     buttonDiv.innerHTML="Your score is " + score;
+*/
 
 function startQuiz() {
   // remove the start button
     timeLeft--;
-
     // Add timer
 var timeInterval = setInterval(function() {
     // As long as there is more than one second left
@@ -100,7 +120,6 @@ var timeInterval = setInterval(function() {
     } else if (timeLeft === 1) {
         // change "seconds" to "second" when there is one second left
         timer.textContent = timeLeft + ' second remaining';
-        timeLeft--;
     } else {
         // Time's up when time left is 0
         timer.textContent = "Time's up";
@@ -108,7 +127,6 @@ var timeInterval = setInterval(function() {
         clearInterval(timeInterval);
     }
     }, 1000);
-
     document.querySelector('#startButton').remove();
     nextQuestion();
 }
